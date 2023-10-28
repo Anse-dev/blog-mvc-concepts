@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-$primary-color: #3498db;
+$primary-color: #04141f;
 $secondary-color: #ecf0f1;
 
 body {
@@ -110,7 +110,7 @@ nav a:hover {
 .carousel {
   width: 100%;
   overflow: hidden;
-  height: 450px;
+  height: 550px;
   position: relative;
 }
 
@@ -120,7 +120,9 @@ nav a:hover {
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: bottom;
   }
 }
 
@@ -382,6 +384,83 @@ h1 {
       color: white;
       border: none;
       padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* Dashboard */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: $primary-color;
+  color: white;
+  padding: 20px;
+
+  h2 {
+    font-size: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: white;
+        transition: color 0.2s;
+        &.dashboard-link {
+          font-weight: bold;
+        }
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+.content {
+  flex: 2;
+  padding: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .category-section,
+  .article-section {
+    margin-bottom: 20px;
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      background-color: $primary-color;
+      color: white;
+      border: none;
+      padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
     }

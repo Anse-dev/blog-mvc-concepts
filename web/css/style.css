@@ -36,7 +36,7 @@ body {
 }
 
 header {
-  background-color: #3498db;
+  background-color: #04141f;
   color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -86,7 +86,7 @@ nav a:hover {
   nav {
     display: none;
     flex-direction: column;
-    background-color: #3498db;
+    background-color: #04141f;
     position: absolute;
     top: 60px;
     right: 0;
@@ -105,7 +105,7 @@ nav a:hover {
 .carousel {
   width: 100%;
   overflow: hidden;
-  height: 450px;
+  height: 550px;
   position: relative;
 }
 
@@ -115,7 +115,11 @@ nav a:hover {
 }
 .slide img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
 }
 
 .caption {
@@ -152,7 +156,7 @@ aside {
   margin-bottom: 10px;
 }
 .search button {
-  background-color: #3498db;
+  background-color: #04141f;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -174,7 +178,7 @@ aside {
 }
 .categories ul li a {
   text-decoration: none;
-  color: #3498db;
+  color: #04141f;
   transition: color 0.2s;
 }
 .categories ul li a:hover {
@@ -211,7 +215,7 @@ main .article p {
   margin: 10px 0;
 }
 main .article button {
-  background-color: #3498db;
+  background-color: #04141f;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -250,7 +254,7 @@ h1 {
 }
 .recent-articles li a {
   text-decoration: none;
-  color: #3498db;
+  color: #04141f;
   transition: color 0.2s;
 }
 .recent-articles li a:hover {
@@ -337,6 +341,78 @@ h1 {
   color: white;
   border: none;
   padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: 20% 1fr;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #04141f;
+  color: white;
+  padding: 20px;
+}
+.sidebar h2 {
+  font-size: 20px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s;
+}
+.sidebar ul li a.dashboard-link {
+  font-weight: bold;
+}
+.sidebar ul li a:hover {
+  color: #ecf0f1;
+}
+
+.content {
+  flex: 2;
+  padding: 20px;
+}
+.content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.content .category-section,
+.content .article-section {
+  margin-bottom: 20px;
+}
+.content .category-section label,
+.content .article-section label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+.content .category-section input[type=text],
+.content .category-section textarea,
+.content .article-section input[type=text],
+.content .article-section textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.content .category-section .btn,
+.content .article-section .btn {
+  background-color: #04141f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
