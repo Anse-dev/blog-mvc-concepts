@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Article Detail</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <h1>Mon Blog</h1>
+          <nav>
+            <ul>
+              <li><a href="#">Accueil</a></li>
+              <li><a href="#">Articles</a></li>
+              <li><a href="#">Catégories</a></li>
+              <li><a href="#">À propos</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+          <div class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <div class="banner">
+      <img src="https://placehold.co/600x400/png" alt="Article Banner" />
+    </div>
+    <div class="container">
+      <article class="article-detail">
+        <h1>Titre de l'article</h1>
+        <p>Description de l'article.</p>
+        <p>Contenu de l'article.</p>
+      </article>
+      <section class="comments">
+        <h2>Commentaires</h2>
+        <form class="comment-form">
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="comment">Commentaire</label>
+            <textarea id="comment" rows="4"></textarea>
+          </div>
+          <button type="submit" class="submit-button">Soumettre le commentaire</button>
+        </form>
+        <div class="comment">
+          <div class="comment-content">
+            <h3>Nom de l'utilisateur</h3>
+            <p>Commentaire de l'utilisateur.</p>
+          </div>
+          <button class="reply-button">Répondre</button>
+        </div>
+        <!-- Répétez cette structure pour d'autres commentaires -->
+      </section>
+    </div>
+  </body>
+</html>

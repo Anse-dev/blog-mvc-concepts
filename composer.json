@@ -1,0 +1,16 @@
+{
+  "name": "anse/blog",
+  "description": "Blog",
+  "autoload": {
+    "psr-4": {
+      "Anse\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Anselme",
+      "email": "jean66.anselme@gmail.com"
+    }
+  ],
+  "require": {}
+}
