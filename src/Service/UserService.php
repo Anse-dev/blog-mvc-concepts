@@ -2,6 +2,7 @@
 
 namespace Anse\Service;
 
+use Anse\Entity\UserEntity;
 use Anse\Repository\UserRepository;
 
 class UserService
@@ -13,20 +14,17 @@ class UserService
     $this->userRepository = new UserRepository();
   }
 
-  public function getAllUsers()
+  public function userLogin($email, $password)
   {
-    $users = $this->userRepository->getAllUsers();
-    return $users;
+    return $this->userRepository->loginUser($email, $password);
   }
 
   public function getUserById($id)
   {
-    $user = $this->userRepository->getUserById($id);
-    return $user;
   }
 
-  public function addUser($user)
+  public function addUser(UserEntity $user)
   {
-    $this->userRepository->addUser($user);
+    return $this->userRepository->createUser($user);
   }
 }

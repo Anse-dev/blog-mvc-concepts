@@ -2,7 +2,14 @@
 
 $primary-color: #04141f;
 $secondary-color: #ecf0f1;
-
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+.logo {
+  color: #fff;
+  text-decoration: none;
+}
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -217,7 +224,12 @@ main {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: white;
-
+    .clamp {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+    }
     img {
       width: 100%;
       height: auto;
@@ -395,6 +407,7 @@ h1 {
 .dashboard {
   display: grid;
   grid-template-columns: 20% 1fr;
+  height: 100vh;
 }
 
 .sidebar {
@@ -465,4 +478,63 @@ h1 {
       cursor: pointer;
     }
   }
+}
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  .stat {
+    text-align: center;
+    padding: 20px;
+    border-radius: 0.4rem;
+    color: white;
+    h2 {
+      margin-bottom: 0;
+    }
+    span {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    &:nth-child(1) {
+      background-color: orangered;
+    }
+    &:nth-child(2) {
+      background-color: rgb(40, 12, 2);
+    }
+    &:nth-child(3) {
+      background-color: rgb(5, 31, 79);
+    }
+    &:nth-child(4) {
+      background-color: rgb(5, 78, 79);
+    }
+  }
+}
+.error {
+  display: block;
+  color: red;
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+.succes {
+  display: block;
+  color: rgb(4, 82, 13);
+  font-weight: bolder;
+  margin-bottom: 5px;
+}
+.field-group {
+  label {
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+}
+
+.field-select {
+  margin: 10px 0;
 }

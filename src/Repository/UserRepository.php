@@ -2,28 +2,28 @@
 
 namespace Anse\Repository;
 
+use Anse\Entity\UserEntity;
 use Anse\Repository\AbstractRepository;
 use PDO;
 
 class UserRepository extends AbstractRepository
 {
-  public function createUser($username, $email, $password, $role = 'user')
+  public function createUser(UserEntity $user)
   {
     // Vérifier si l'e-mail est déjà utilisé
     $query = "SELECT id FROM users WHERE email = ?";
     $stmt = $this->connection->prepare($query);
-    $stmt->execute([$email]);
+    $stmt->execute([$user->getEmail()]);
 
     if ($stmt->fetch()) {
-      // L'e-mail est déjà utilisé, vous pouvez gérer l'erreur ici
       return false;
     }
 
     // L'e-mail est unique, procédez à l'insertion
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     $query = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
     $stmt = $this->connection->prepare($query);
-    $stmt->execute([$username, $email, $hashedPassword, $role]);
+    return $stmt->execute([$user->getName(), $user->getEmail(), $user->getPassword(), $user->getRole()]);
   }
 
   public function loginUser($email, $password)
@@ -32,9 +32,11 @@ class UserRepository extends AbstractRepository
     $stmt = $this->connection->prepare($query);
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if ($user && password_verify($password, $user['password'])) {
-      return $user;
+
+      $userEntity = new UserEntity();
+      $userEntity->setId($user['id'])->setName($user['username'])->setEmail($user['email'])->setPassword($user['password'])->setRole($user['role']);
+      return $userEntity;
     } else {
       return false;
     }

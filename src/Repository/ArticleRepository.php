@@ -7,11 +7,11 @@ use Anse\Repository\AbstractRepository;
 
 class ArticleRepository extends AbstractRepository
 {
-  public function createArticle($title, $content, $categoryId, $userId)
+  public function createArticle(ArticleEntity $article)
   {
-    $query = "INSERT INTO articles (title, content, category_id, user_id, published) VALUES (?, ?, ?, ?, 1)";
+    $query = "INSERT INTO articles (title, content, category_id, user_id, published,created_date, updated_date, excerpt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $this->connection->prepare($query);
-    $stmt->execute([$title, $content, $categoryId, $userId]);
+    return $stmt->execute([$article->getTitle(), $article->getContent(), $article->getCategorieId(), $article->getUserId(), $article->getPublished(), date("d-m-y"), date("d-m-y"), $article->getExcerpt()]);
   }
 
   public function updateArticle($articleId, $title, $content)
@@ -28,7 +28,20 @@ class ArticleRepository extends AbstractRepository
     $stmt->execute([$articleId]);
   }
 
-  public function getPublishedArticles()
+  public function getPublishedArticleById(int $id)
+  {
+    $query = "SELECT * FROM articles WHERE published = 1 AND id = ?";
+    $stmt = $this->connection->prepare($query);
+    $stmt->execute([$id]);
+
+    $resultat =  $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    $articleEntity = new ArticleEntity();
+    $articleEntity->setId($resultat["id"])->setCategorieId($resultat["category_id"])->setContent($resultat["content"])->setUserId($resultat["user_id"])->setTitle($resultat["title"]);
+
+    return $articleEntity;
+  }
+  public function  getPublishedArticles()
   {
     $query = "SELECT * FROM articles WHERE published = 1";
     $stmt = $this->connection->query($query);

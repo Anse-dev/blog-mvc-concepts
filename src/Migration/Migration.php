@@ -20,7 +20,7 @@ class Migration
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('user', 'admin') NOT NULL DEFAULT 'user'
+    role ENUM('user', 'admin','super_admin' ) NOT NULL DEFAULT 'user'
     )";
 
     $Categories = "CREATE TABLE categories (
@@ -34,6 +34,9 @@ class Migration
         category_id INT,
         user_id INT,
         published BOOLEAN DEFAULT 0,
+        created_date DATE NOT NULL,
+        updated_date DATE NOT NULL,
+        excerpt VARCHAR(255) NOT NULL,
         FOREIGN KEY (category_id) REFERENCES categories(id),
         FOREIGN KEY (user_id) REFERENCES users(id)
         )";

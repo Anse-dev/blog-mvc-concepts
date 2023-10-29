@@ -9,7 +9,9 @@ class ArticleEntity
   private string $title;
   private string $content;
   private int $userId;
-  private bool $published;
+  private int $published;
+  private string $excerpt;
+
 
   /**
    * Get the value of id
@@ -127,6 +129,26 @@ class ArticleEntity
   public function setPublished($published)
   {
     $this->published = $published;
+
+    return $this;
+  }
+
+  /**
+   * Get the value of excerpt
+   */
+  public function getExcerpt()
+  {
+    return $this->excerpt;
+  }
+
+  /**
+   * Set the value of excerpt
+   *
+   * @return  self
+   */
+  public function setExcerpt($excerpt)
+  {
+    $this->excerpt = $excerpt;
 
     return $this;
   }

@@ -2,6 +2,7 @@
 
 namespace Anse\Service;
 
+use Anse\Entity\ArticleEntity;
 use Anse\Repository\ArticleRepository;
 
 class ArticleService
@@ -17,5 +18,14 @@ class ArticleService
   {
     $publishedArticles = $this->articleRepository->getPublishedArticles();
     return $publishedArticles;
+  }
+  public function getArticleById(int $id)
+  {
+    $publishedArticles = $this->articleRepository->getPublishedArticleById($id);
+    return $publishedArticles;
+  }
+  public function addArticle(ArticleEntity $article)
+  {
+    return $this->articleRepository->createArticle($article);
   }
 }

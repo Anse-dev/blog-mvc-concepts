@@ -24,4 +24,27 @@ class AbstractController
       include $relativePath . "template.php";
     }
   }
+  public function redirect($path, $status = null)
+  {
+    header("Location: $path");
+    exit();
+  }
+  public function loged($role): bool
+  {
+    if ((isset($_SESSION["user"]) and isset($_SESSION["user"]["role"])) and ($_SESSION["user"]["role"] == "super_admin" or $_SESSION["user"]["role"] == $role)) {
+      return true;
+    }
+    return false;
+  }
+  //Il verifie si le formulaire a ete soumis
+  public function hasPosted()
+  {
+    return $_SERVER["REQUEST_METHOD"] == "POST";
+  }
+
+
+  public function hasIsset(string $nameOfForm)
+  {
+    return isset($_POST[$nameOfForm]);
+  }
 }
