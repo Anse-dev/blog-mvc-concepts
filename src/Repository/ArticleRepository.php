@@ -1,5 +1,8 @@
 <?php
 
+namespace Anse\Repository;
+
+use Anse\Entity\ArticleEntity;
 use Anse\Repository\AbstractRepository;
 
 class ArticleRepository extends AbstractRepository
@@ -29,7 +32,14 @@ class ArticleRepository extends AbstractRepository
   {
     $query = "SELECT * FROM articles WHERE published = 1";
     $stmt = $this->connection->query($query);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $resultat =  $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    $articles = [];
+    foreach ($resultat as $article) {
+      $articleEntity = new ArticleEntity();
+      $articleEntity->setId($article["id"])->setCategorieId($article["category_id"])->setContent($article["content"])->setUserId($article["user_id"])->setTitle($article["title"]);
+      $articles[] = $articleEntity;
+    }
+    return $articles;
   }
 
   public function searchArticles($keyword)
@@ -39,6 +49,13 @@ class ArticleRepository extends AbstractRepository
     $searchTerm = "%" . $keyword . "%";
     $stmt->execute([$searchTerm, $searchTerm]);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $resultat =  $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    $articles = [];
+    foreach ($resultat as $article) {
+      $articleEntity = new ArticleEntity();
+      $articleEntity->setId($article["id"])->setCategorieId($article["category_id"])->setContent($article["content"])->setUserId($article["user_id"])->setTitle($article["title"]);
+      $articles[] = $articleEntity;
+    }
+    return $articles;
   }
 }

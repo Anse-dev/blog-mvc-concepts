@@ -12,7 +12,7 @@ class Connection
   public function __construct()
   {
     $dbHost = "localhost";
-    $dbName = "blogr";
+    $dbName = "blog";
     $dbUser = "root";
     $dbPassword = "anselme";
     $charset = 'utf8';

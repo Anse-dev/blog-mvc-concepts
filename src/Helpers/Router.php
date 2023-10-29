@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 namespace Anse\Helpers;
 
 
@@ -21,6 +18,7 @@ class Router
 
   public function matchRoute($url)
   {
+    $url = parse_url($url)['path'];
     foreach ($this->routes as $route) {
       $pattern = $this->convertPatternToRegex($route['pattern']);
       if (preg_match($pattern, $url, $matches)) {
@@ -59,14 +57,17 @@ class Router
       $controllerName = $route['controller'];
       $action = $route['action'];
       $params = $route['params'];
+      $queryParams = [];
+      parse_str($_SERVER["QUERY_STRING"] ?? '', $queryParams);
 
       // Include and instantiate the controller
+      $newArray = array_merge($params, $queryParams);
 
       $controller = new $controllerName();
 
 
       // Call the action method with parameters
-      call_user_func_array([$controller, $action], $params);
+      call_user_func_array([$controller, $action], $newArray);
     } else {
       // Handle 404
       header("HTTP/1.0 404 Not Found");

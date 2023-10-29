@@ -2,25 +2,44 @@
 
 namespace Anse\Controllers;
 
-use Anse\Service\MarqueService;
+use Anse\Service\ArticleService;
+use Anse\Service\CategoryService;
 
 class HomeController extends AbstractController
 {
-  protected MarqueService $marqueService;
+
+  private ArticleService $articleService;
+  private CategoryService $categoryService;
   public function __construct()
   {
-    $this->marqueService = new MarqueService();
+    $this->articleService =  new ArticleService();
+    $this->categoryService =  new CategoryService();
   }
 
 
 
   public function index()
   {
-    $marques = $this->marqueService->getAllMarques();
-
+    $articles = $this->articleService->getAllArticles();
+    $categories = $this->categoryService->getAllCategories();
     $data = [
-      "marques" => $marques
+      "articles" => $articles,
+      "categories" => $categories
     ];
-    $this->renderView("home-view", $data);
+    $this->renderView("index", $data);
+  }
+
+  public function show($id, $q)
+  {
+    var_dump($q);
+
+
+    $articles = $this->articleService->getAllArticles();
+    $categories = $this->categoryService->getAllCategories();
+    $data = [
+      "articles" => $articles,
+      "categories" => $categories
+    ];
+    $this->renderView("index", $data);
   }
 }

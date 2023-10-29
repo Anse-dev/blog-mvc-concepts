@@ -1,6 +1,9 @@
 <?php
 
+namespace Anse\Repository;
+
 use Anse\Repository\AbstractRepository;
+use PDO;
 
 class CommentRepository extends AbstractRepository
 {

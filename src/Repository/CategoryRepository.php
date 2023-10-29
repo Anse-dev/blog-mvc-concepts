@@ -1,6 +1,10 @@
 <?php
 
+namespace Anse\Repository;
+
+use Anse\Entity\CategoryEntity;
 use Anse\Repository\AbstractRepository;
+use PDO;
 
 class CategoryRepository extends AbstractRepository
 {
@@ -26,7 +30,7 @@ class CategoryRepository extends AbstractRepository
     $stmt = $this->connection->prepare($query);
     $stmt->execute([$categoryId]);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
   }
 
   public function getArticleCountByCategory($categoryId)
@@ -37,5 +41,18 @@ class CategoryRepository extends AbstractRepository
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result['article_count'];
+  }
+  public function getAllCategories()
+  {
+    $query = "SELECT * FROM categories";
+    $stmt = $this->connection->query($query);
+    $resultat =  $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    $categories = [];
+    foreach ($resultat as $category) {
+      $categoryEntity = new CategoryEntity();
+      $categoryEntity->setId($category["id"])->setTitle($category["name"]);
+      $categories[] = $categoryEntity;
+    }
+    return $categories;
   }
 }
